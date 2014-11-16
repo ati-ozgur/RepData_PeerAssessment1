@@ -59,6 +59,16 @@ breakSize <-dim(totalsGroupedByDate)[1]
 hist(totalsGroupedByDate$sumStep,breaks=breakSize,main="Total Steps taken each day",ylab="totalSteps",xlab="date")
 ```
 
+### mean 
+```{r}
+mean(totalsGroupedByDate$sumStep)
+```
+
+### median 
+
+```{r}
+median(totalsGroupedByDate$sumStep)
+```
 
 
 
