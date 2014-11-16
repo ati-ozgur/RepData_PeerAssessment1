@@ -73,8 +73,18 @@ median(totalsGroupedByDate$sumStep)
 
 
 ## What is the average daily activity pattern?
+```{r}
+averageGroupedByInterval <- dataActivity %>%
+  group_by(interval) %>%
+  select(steps, interval) %>%
+  summarise(
+    averageStep = mean(steps, na.rm = TRUE)
+  ) 
 
+plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l")
 
+```
+  
 
 ## Imputing missing values
 
