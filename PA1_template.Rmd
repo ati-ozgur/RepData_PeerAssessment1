@@ -84,7 +84,8 @@ averageGroupedByInterval <- dataActivity %>%
 plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="average number of steps taken each 5 minute interval")
 
 ```
-### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+###Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r}
 maxSteps <- averageGroupedByInterval  %>%
   arrange( desc(averageStep)) 
@@ -173,19 +174,33 @@ dataActivityMissingValuesImputed[,5] <- weekdays(dataActivityMissingValuesImpute
 names(dataActivityMissingValuesImputed)[5] <- "Weekdays"
 
 dataActivityMissingValuesImputed[,6] <- ifelse(dataActivityMissingValuesImputed$Weekdays %in% c("Saturday","Sunday"),"weekend","weekday")
-names(dataActivityMissingValuesImputed)[6] <- "WeekeDayOrWeekEnd"
+names(dataActivityMissingValuesImputed)[6] <- "WeekDayOrWeekEnd"
 
 
 
+par(mfrow=c(2,1)) 
 
-averageGroupedByInterval <- dataActivityMissingValuesImputed %>%
-  mutate()
-  group_by(interval) %>%
-  select(steps, interval) %>%
+
+averageGroupedByIntervalNAImputedWeekDay <- dataActivityMissingValuesImputed %>%
+  group_by(interval,WeekDayOrWeekEnd) %>%
+  select(steps, interval,WeekDayOrWeekEnd) %>%
   summarise(
     averageStep = mean(steps, na.rm = TRUE)
-  ) 
+  ) %>%
+  filter(WeekDayOrWeekEnd == "weekday")
 
-plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="average number of steps taken each 5 minute interval")
+
+plot(averageGroupedByIntervalNAImputedWeekDay$interval,averageGroupedByIntervalNAImputedWeekDay$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="Weekday ")
+
+averageGroupedByIntervalNAImputedWeekEnd <- dataActivityMissingValuesImputed %>%
+  group_by(interval,WeekDayOrWeekEnd) %>%
+  select(steps, interval,WeekDayOrWeekEnd) %>%
+  summarise(
+    averageStep = mean(steps, na.rm = TRUE)
+  ) %>%
+  filter(WeekDayOrWeekEnd == "weekend")
+
+
+plot(averageGroupedByIntervalNAImputedWeekEnd$interval,averageGroupedByIntervalNAImputedWeekEnd$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="Weekend ")
 
 ```
