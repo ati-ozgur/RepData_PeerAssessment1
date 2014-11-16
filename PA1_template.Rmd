@@ -7,6 +7,16 @@ output:
 
 
 ## Loading and preprocessing the data
+```{r, echo=FALSE}
+if(!file.exists("activity.csv"))
+{
+  unzip("activity.zip")
+}
+```
+### Load data
+```{r}
+dataActivity <- read.csv("activity.csv")
+```
 
 
 
