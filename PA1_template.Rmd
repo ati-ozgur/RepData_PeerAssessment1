@@ -7,6 +7,13 @@ output:
   word_document: default
 ---
 
+## Libraries 
+```{r}
+library("dplyr")
+```
+
+
+
 
 ## Loading and preprocessing the data
 ### Unzip Data File
@@ -42,6 +49,14 @@ unique(dataActivity$date)
 ```{r}
 dataActivityNARemoved <- dataActivity[complete.cases(dataActivity),]
 
+totalsGroupedByDate <- dataActivityNARemoved %>%
+  group_by(date) %>%
+  select(steps, date) %>%
+  summarise(
+    sumStep = sum(steps, na.rm = TRUE)
+  ) 
+
+hist(totalsGroupedByDate$sumStep,breaks=dim(totalsGroupedByDate)[1])
 ```
 
 
