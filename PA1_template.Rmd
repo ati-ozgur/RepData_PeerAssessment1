@@ -7,7 +7,8 @@ output:
 
 
 ## Loading and preprocessing the data
-```{r, echo=FALSE}
+### Unzip Data File
+```{r}
 if(!file.exists("activity.csv"))
 {
   unzip("activity.zip")
