@@ -5,6 +5,9 @@ output:
     keep_md: true
 ---
 
+```{r}
+library(dplyr)
+```
 
 ## Loading and preprocessing the data
 ### Unzip Data File
@@ -20,8 +23,27 @@ dataActivity <- read.csv("activity.csv")
 ```
 
 
+### Some summary statistics
+```{r}
+summary(dataActivity)
+```
+
+How many days exists in data set?
+
+```{r}
+unique(dataActivity$date)
+```
+
+
+
 
 ## What is mean total number of steps taken per day?
+
+
+```{r}
+dataActivityNARemoved <- d[!is.na(dataActivity)]
+  ```
+
 
 
 
