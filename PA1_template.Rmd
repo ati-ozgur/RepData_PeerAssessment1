@@ -81,7 +81,7 @@ averageGroupedByInterval <- dataActivity %>%
     averageStep = mean(steps, na.rm = TRUE)
   ) 
 
-plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l")
+plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="average number of steps taken each 5 minute interval")
 
 ```
   
