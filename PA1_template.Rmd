@@ -94,6 +94,11 @@ maxSteps[ 1,]
 
 ## Imputing missing values
 
+### total number of missing values in the dataset 
+
+```{r}
+sum(complete.cases(dataActivity))
+```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
