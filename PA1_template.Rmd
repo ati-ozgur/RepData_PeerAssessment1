@@ -8,7 +8,7 @@ output:
 ---
 
 ## Libraries 
-```{r}
+```{r,warning=FALSE,message=FALSE}
 library("dplyr")
 ```
 
