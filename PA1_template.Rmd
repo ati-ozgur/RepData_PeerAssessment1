@@ -116,5 +116,50 @@ dataActivityMissingValuesImputed[!complete.cases(dataActivity[,1]),1] <- average
 
 ```
 
+Calculate Histogram with NAs imputed
+
+```{r}
+
+totalsGroupedByDateNAImputed <- dataActivityMissingValuesImputed %>%
+  group_by(date) %>%
+  select(steps, date) %>%
+  summarise(
+    sumStep = sum(steps, na.rm = TRUE)
+  ) 
+breakSize <-dim(totalsGroupedByDateNAImputed)[1]
+hist(totalsGroupedByDateNAImputed$sumStep,breaks=breakSize,main="Total Steps taken each day",ylab="totalSteps",xlab="date")
+
+```
+
+### mean 
+```{r}
+mean(totalsGroupedByDateNAImputed$sumStep)
+```
+
+### median 
+
+```{r}
+median(totalsGroupedByDateNAImputed$sumStep)
+```
+
+### Do these values differ from the estimates from the first part of the assignment? 
+
+```{r}
+mean(totalsGroupedByDateNAImputed$sumStep) - mean(totalsGroupedByDate$sumStep)
+
+median(totalsGroupedByDateNAImputed$sumStep) - median(totalsGroupedByDate$sumStep)
+
+```
+Mean does not change due to our strategy to replace missing values with mean.
+But median changes.
+
+### What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+Total daily number of steps increases since we replaced NA values with mean.
+
+
+
+
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
