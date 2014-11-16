@@ -25,7 +25,7 @@ if(!file.exists("activity.csv"))
 ```
 ### Load data
 ```{r}
-dataActivity <- read.csv("activity.csv")
+dataActivity <- read.csv("activity.csv",stringsAsFactors=FALSE)
 ```
 
 
@@ -163,3 +163,29 @@ Total daily number of steps increases since we replaced NA values with mean.
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+## What is the average daily activity pattern?
+```{r}
+dataActivityMissingValuesImputed[,4] <- as.Date(dataActivityMissingValuesImputed$date, format = "%Y-%m-%d")
+names(dataActivityMissingValuesImputed)[4] <- "dateAsDate"
+
+dataActivityMissingValuesImputed[,5] <- weekdays(dataActivityMissingValuesImputed$dateAsDate)
+names(dataActivityMissingValuesImputed)[5] <- "Weekdays"
+
+dataActivityMissingValuesImputed[,6] <- ifelse(dataActivityMissingValuesImputed$Weekdays %in% c("Saturday","Sunday"),"weekend","weekday")
+names(dataActivityMissingValuesImputed)[6] <- "WeekeDayOrWeekEnd"
+
+
+
+
+averageGroupedByInterval <- dataActivityMissingValuesImputed %>%
+  mutate()
+  group_by(interval) %>%
+  select(steps, interval) %>%
+  summarise(
+    averageStep = mean(steps, na.rm = TRUE)
+  ) 
+
+plot(averageGroupedByInterval$interval,averageGroupedByInterval$averageStep,type="l",xlab="intervals",ylab="average steps for every day",main="average number of steps taken each 5 minute interval")
+
+```
