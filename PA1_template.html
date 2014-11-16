@@ -343,8 +343,9 @@ howManyNAinInterval
 
 <p>Only missing values are in steps, no missing values for other features.</p>
 
-<p>Devise a strategy for filling in all of the missing values in the dataset.
-We use the mean for that 5-minute interval.</p>
+<h4>Devise a strategy for filling in all of the missing values in the dataset.</h4>
+
+<p>We use the <em>mean</em> for that 5-minute interval.</p>
 
 <pre><code class="r">dataActivityMissingValuesImputed &lt;- dataActivity
 dataActivityMissingValuesImputed[!complete.cases(dataActivity[,1]),1] &lt;- averageGroupedByInterval[averageGroupedByInterval[,1] == dataActivity[!complete.cases(dataActivity[,1]),3],2]$averageStep
@@ -394,8 +395,8 @@ hist(totalsGroupedByDateNAImputed$sumStep,breaks=breakSize,main=&quot;Total Step
 <pre><code>## [1] 1.188679
 </code></pre>
 
-<p>Mean does not change due to our strategy to replace missing values with mean.
-But median changes.</p>
+<p>Mean does not change due to our strategy to replace missing values with mean,
+but median changes.</p>
 
 <h3>What is the impact of imputing missing data on the estimates of the total daily number of steps?</h3>
 

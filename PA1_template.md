@@ -182,8 +182,9 @@ howManyNAinInterval
 
 Only missing values are in steps, no missing values for other features.
 
-Devise a strategy for filling in all of the missing values in the dataset.
-We use the mean for that 5-minute interval.
+#### Devise a strategy for filling in all of the missing values in the dataset.
+
+We use the *mean* for that 5-minute interval.
 
 
 ```r
@@ -246,8 +247,8 @@ median(totalsGroupedByDateNAImputed$sumStep) - median(totalsGroupedByDate$sumSte
 ```
 ## [1] 1.188679
 ```
-Mean does not change due to our strategy to replace missing values with mean.
-But median changes.
+Mean does not change due to our strategy to replace missing values with mean,
+but median changes.
 
 ### What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
