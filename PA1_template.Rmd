@@ -40,8 +40,9 @@ unique(dataActivity$date)
 
 
 ```{r}
-dataActivityNARemoved <- dataActivity[!is.na(dataActivity)]
-  ```
+dataActivityNARemoved <- dataActivity[complete.cases(dataActivity),]
+
+```
 
 
 
