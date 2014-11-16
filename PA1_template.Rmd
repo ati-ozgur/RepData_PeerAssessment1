@@ -55,8 +55,8 @@ totalsGroupedByDate <- dataActivityNARemoved %>%
   summarise(
     sumStep = sum(steps, na.rm = TRUE)
   ) 
-
-hist(totalsGroupedByDate$sumStep,breaks=dim(totalsGroupedByDate)[1])
+breakSize <-dim(totalsGroupedByDate)[1]
+hist(totalsGroupedByDate$sumStep,breaks=breakSize,main="Total Steps taken each day",ylab="totalSteps",xlab="date")
 ```
 
 
